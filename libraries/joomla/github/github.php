@@ -72,6 +72,12 @@ class JGithub
 	 * @since  12.1
 	 */
 	protected $commits;
+        
+        /**
+	 * @var    JGithubTags  GitHub API object for tags.
+	 * @since  12.2
+	 */
+	protected $tags;
 
 	/**
 	 * Constructor.
@@ -153,6 +159,15 @@ class JGithub
 				$this->commits = new JGithubCommits($this->options, $this->client);
 			}
 			return $this->commits;
+		}
+                
+                if ($name == 'tags')
+		{
+			if ($this->tags == null)
+			{
+				$this->tags = new JGithubTags($this->options, $this->client);
+			}
+			return $this->tags;
 		}
 	}
 
